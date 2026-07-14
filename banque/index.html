@@ -7,50 +7,72 @@
 <title>Dossier de financement &#8212; acquisition locative, Vichy</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1a2332;--muted:#5a6472;--line:#d8dde4;--bg:#f7f8fa;--accent:#1f4e79}
+:root{--ink:#16202e;--muted:#66707e;--line:#e3e7ec;--bg:#f5f7f9;--accent:#1f4e79;--accent2:#2e6da4;--gold:#8a6830}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.6}
-.page{max-width:820px;margin:0 auto;background:#fff;padding:48px 56px;min-height:100vh}
-h1{font-family:'Source Serif 4',serif;font-size:26px;font-weight:600;line-height:1.25}
-h2{font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;margin-top:34px;padding-bottom:8px;border-bottom:2px solid var(--accent);color:var(--accent)}
-.head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--ink);padding-bottom:18px}
-.head .date{font-size:12.5px;color:var(--muted);text-align:right}
-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
-td,th{padding:9px 12px;border:1px solid var(--line);text-align:left;vertical-align:middle}
-th{background:var(--bg);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.65}
+.page{max-width:840px;margin:0 auto;background:#fff;box-shadow:0 2px 24px rgba(22,32,46,.07)}
+.inner{padding:0 60px 48px}
+/* Bandeau identite */
+.masthead{background:linear-gradient(135deg,#16202e 0%,#1f3550 100%);color:#fff;padding:44px 60px 36px}
+.masthead .ref{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.masthead h1{font-family:'Source Serif 4',serif;font-size:29px;font-weight:600;line-height:1.2;margin-top:10px}
+.masthead .who{margin-top:14px;font-size:14px;color:rgba(255,255,255,.8)}
+.masthead .who input.edit{background:rgba(255,255,255,.12);border-bottom:1.5px dashed rgba(255,255,255,.5);color:#fff}
+/* Synthese chiffres cles */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.kpis>div{background:#fff;padding:18px 14px;text-align:center}
+.kpis .v{font-family:'Source Serif 4',serif;font-size:22px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.kpis .l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+@media(max-width:640px){.kpis{grid-template-columns:1fr 1fr}.inner,.masthead{padding-left:24px;padding-right:24px}}
+h2{font-family:'Source Serif 4',serif;font-size:17px;font-weight:600;margin-top:38px;color:var(--ink);display:flex;align-items:baseline;gap:12px}
+h2 .n{font-size:13px;color:var(--accent2);font-family:'Inter',sans-serif;font-weight:700;letter-spacing:.05em}
+h2:after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+td,th{padding:10px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:2px solid var(--ink)}
+tr:last-child td{border-bottom:none}
 td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-tr.total td{font-weight:700;background:var(--bg)}
-input.edit{border:none;border-bottom:1.5px dashed var(--accent);background:#f0f6fc;font:inherit;font-weight:600;color:var(--accent);padding:2px 6px;width:110px;text-align:right}
-input.edit.wide{width:170px;text-align:left}
-input.edit:focus{outline:2px solid var(--accent);background:#e8f1fa}
-.note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
-ul.pieces{margin:12px 0 0 18px}
-ul.pieces li{margin-top:6px;font-size:14px}
-.encart{background:var(--bg);border-left:3px solid var(--accent);padding:14px 18px;margin-top:14px;font-size:14px}
-.actions{position:sticky;bottom:0;background:var(--ink);color:#fff;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:820px;margin:0 auto}
+tr.total td{font-weight:700;border-top:2px solid var(--ink);border-bottom:none;padding-top:12px}
+tr.total td.num{font-family:'Source Serif 4',serif;font-size:16px}
+input.edit{border:none;border-bottom:1.5px dashed var(--accent2);background:#eef4fa;font:inherit;font-weight:600;color:var(--accent);padding:2px 8px;width:110px;text-align:right;border-radius:3px 3px 0 0}
+input.edit.wide{width:180px;text-align:left}
+input.edit:focus{outline:2px solid var(--accent2);background:#e4eefa}
+.note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.55}
+ul.pieces{margin:14px 0 0 2px;list-style:none}
+ul.pieces li{margin-top:8px;font-size:14px;padding-left:24px;position:relative}
+ul.pieces li:before{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border:1.5px solid var(--accent2);border-radius:3px}
+.encart{background:var(--bg);border-radius:10px;padding:18px 22px;margin-top:14px;font-size:14px;line-height:1.7}
+.encart b{color:var(--accent)}
+.actions{position:sticky;bottom:0;background:var(--ink);color:#fff;padding:14px 60px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:840px;margin:0 auto}
 .actions .hint{font-size:12.5px;color:rgba(255,255,255,.7)}
-.actions button{background:var(--accent);color:#fff;border:none;font:inherit;font-weight:700;padding:11px 22px;border-radius:6px;cursor:pointer}
+.actions button{background:var(--accent2);color:#fff;border:none;font:inherit;font-weight:700;padding:11px 24px;border-radius:6px;cursor:pointer}
 @media print{
   body{background:#fff}
-  .page{padding:0;max-width:none;min-height:0}
+  .page{box-shadow:none;max-width:none}
+  .inner{padding:0 8px 0}
+  .masthead{padding:24px 8px;background:#16202e!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .actions{display:none}
   input.edit{border:none;background:none;color:var(--ink)}
   h2{break-after:avoid}
-  table{break-inside:avoid}
+  table,.encart{break-inside:avoid}
 }
 </style>
 </head>
 <body>
 <div class="page">
-  <div class="head">
-    <div>
-      <h1>Dossier de pr&eacute;sentation<br>Projet d'acquisition locative &#8212; Vichy</h1>
-      <p style="margin-top:8px;font-size:14px;color:var(--muted)">Emprunteur : <input class="edit wide" value="Erwan Roche"> &middot; T&eacute;l. : <input class="edit wide" value="" placeholder="a completer"></p>
-    </div>
-    <div class="date">&Eacute;tabli le <span id="dateAuto"></span><br>&Agrave; l'attention du conseiller bancaire</div>
+  <div class="masthead">
+    <div class="ref">Dossier de financement &middot; &eacute;tabli le <span id="dateAuto"></span></div>
+    <h1>Projet d'acquisition locative<br>25 rue de Paris, Vichy</h1>
+    <p class="who">Emprunteur : <input class="edit wide" value="Erwan Roche"> &nbsp;&middot;&nbsp; T&eacute;l. : <input class="edit wide" value="" placeholder="a completer"></p>
   </div>
-
-  <h2>1. L'emprunteur &#8212; profil investisseur</h2>
+  <div class="kpis">
+    <div><div class="v"><span id="kCout">101 460</span> &euro;</div><div class="l">Co&ucirc;t total projet</div></div>
+    <div><div class="v"><span id="kApport">&mdash;</span></div><div class="l">Apport personnel</div></div>
+    <div><div class="v"><span id="kEmprunt">&mdash;</span></div><div class="l">Financement demand&eacute;</div></div>
+    <div><div class="v"><span id="kMensu">&mdash;</span> &euro;/mois</div><div class="l">Mensualit&eacute; estim&eacute;e</div></div>
+  </div>
+  <div class="inner">
+  <h2><span class="n">01</span> L'emprunteur &#8212; profil investisseur</h2>
   <p style="margin-top:10px">Investisseur locatif <b>d&eacute;j&agrave; en exploitation</b> : propri&eacute;taire d'un studio meubl&eacute; en location courte dur&eacute;e &agrave; Vichy (secteur Op&eacute;ra), en activit&eacute; continue.</p>
   <table>
     <tr><th>Revenu locatif mensuel moyen du bien actuel</th><td class="num"><input class="edit" value="1 200"> &euro;</td></tr>
@@ -59,7 +81,7 @@ ul.pieces li{margin-top:6px;font-size:14px}
   </table>
   <p class="note">L'exp&eacute;rience d'exploitation existante r&eacute;duit le risque locatif du projet : gestion, commercialisation et fiscalit&eacute; d&eacute;j&agrave; ma&icirc;tris&eacute;es sur un bien comparable, dans la m&ecirc;me ville.</p>
 
-  <h2>2. Le bien</h2>
+  <h2><span class="n">02</span> Le bien</h2>
   <table>
     <tr><th style="width:40%">Adresse</th><td>25 rue de Paris, 03200 Vichy &#8212; lot 4, 2&#7497; &eacute;tage</td></tr>
     <tr><th>Type</th><td>T1 de 20,80 m&sup2; avec balcon filant expos&eacute; sud, climatis&eacute; (PAC air/air)</td></tr>
@@ -69,7 +91,7 @@ ul.pieces li{margin-top:6px;font-size:14px}
     <tr><th>Vendeur</th><td>RACHAT DE SUCCESSION.COM, SAS &#8212; RCS Cusset 798 507 406 (marchand de biens, en activit&eacute; depuis 2013)</td></tr>
   </table>
 
-  <h2>3. Plan de financement</h2>
+  <h2><span class="n">03</span> Plan de financement</h2>
   <table id="plan">
     <tr><th>Poste</th><th style="text-align:right">Montant</th></tr>
     <tr><td>Prix d'acquisition (FAI, selon formule retenue)</td><td class="num"><input class="edit calc" value="94 660"> &euro;</td></tr>
@@ -83,7 +105,7 @@ ul.pieces li{margin-top:6px;font-size:14px}
   </table>
   <p class="note">Sp&eacute;cificit&eacute; du montage : vente en part fonci&egrave;re (50 980 &euro;) + travaux port&eacute;s en ASL (43 680 &euro;) &#8212; les frais de notaire sont calcul&eacute;s sur la seule part fonci&egrave;re. Le prix est bloqu&eacute; au compromis ; les appels de fonds ASL suivent l'avancement du chantier.</p>
 
-  <h2>4. Revenus locatifs pr&eacute;visionnels</h2>
+  <h2><span class="n">04</span> Revenus locatifs pr&eacute;visionnels</h2>
   <table>
     <tr><th>Sc&eacute;nario</th><th style="text-align:right">Loyer mensuel</th><th style="text-align:right">Revenu annuel</th></tr>
     <tr><td>Location nue (plancher de s&eacute;curit&eacute; &#8212; loyers observ&eacute;s Vichy 2026, T1 : 395-478 &euro;)</td><td class="num">420 &euro;</td><td class="num">5 040 &euro;</td></tr>
@@ -92,7 +114,7 @@ ul.pieces li{margin-top:6px;font-size:14px}
   </table>
   <p class="note">March&eacute; locatif de Vichy : ville thermale class&eacute;e UNESCO (2021), client&egrave;le de curistes toute l'ann&eacute;e, gare en centre-ville (Paris ~3 h). Le bien est climatis&eacute; &#8212; &eacute;quipement rare sur le parc ancien local, d&eacute;terminant en saison estivale. M&ecirc;me en sc&eacute;nario plancher (location nue), le loyer couvre une part substantielle de la mensualit&eacute; vis&eacute;e.</p>
 
-  <h2>5. Simulation de charge et taux d'effort</h2>
+  <h2><span class="n">05</span> Simulation de charge et taux d'effort</h2>
   <table>
     <tr><th>Taux d'int&eacute;r&ecirc;t retenu (hors assurance)</th><td class="num"><input class="edit sim" id="taux" value="3,4"> %</td></tr>
     <tr><th>Dur&eacute;e</th><td class="num"><input class="edit sim" id="duree" value="20"> ans</td></tr>
@@ -104,14 +126,14 @@ ul.pieces li{margin-top:6px;font-size:14px}
   <p class="note">Calculs conformes aux crit&egrave;res HCSF : loyers pond&eacute;r&eacute;s &agrave; 70 %, taux d'endettement global &agrave; maintenir sous 35 % des revenus nets (&agrave; recalculer par le conseiller avec l'ensemble des charges de l'emprunteur). En sc&eacute;nario courte dur&eacute;e au niveau de l'exploitation actuelle de l'emprunteur, l'op&eacute;ration s'autofinance.</p>
   <p class="note">&Eacute;pargne r&eacute;siduelle apr&egrave;s apport : <input class="edit" value="" placeholder="a completer"> &euro; &#8212; <i>&agrave; renseigner : c'est la marge de s&eacute;curit&eacute; du dossier.</i></p>
 
-  <h2>6. &Eacute;l&eacute;ments de s&eacute;curit&eacute; pour le pr&ecirc;teur</h2>
+  <h2><span class="n">06</span> &Eacute;l&eacute;ments de s&eacute;curit&eacute; pour le pr&ecirc;teur</h2>
   <div class="encart">
     <b>Risque travaux :</b> port&eacute; par le vendeur (chantier en ASL, entreprise en place, toiture et r&eacute;seaux d&eacute;j&agrave; r&eacute;alis&eacute;s) &mdash; l'acqu&eacute;reur ach&egrave;te un prix ferme.<br><br>
     <b>Risque locatif :</b> DPE C (aucune &eacute;ch&eacute;ance d'interdiction de location), charges minimales, demande locative document&eacute;e, emprunteur d&eacute;j&agrave; exploitant sur le m&ecirc;me march&eacute;.<br><br>
     <b>Risque de revente :</b> hyper-centre de Vichy, immeuble enti&egrave;rement r&eacute;habilit&eacute;, 7 lots sur 9 d&eacute;j&agrave; vendus dans l'op&eacute;ration.
   </div>
 
-  <h2>7. Pi&egrave;ces jointes au pr&eacute;sent dossier</h2>
+  <h2><span class="n">07</span> Pi&egrave;ces jointes au pr&eacute;sent dossier</h2>
   <ul class="pieces">
     <li>Deux derniers avis d'imposition &mdash; <i>&agrave; joindre par l'emprunteur</i></li>
     <li>Trois derniers bulletins de salaire / justificatifs de revenus &mdash; <i>&agrave; joindre</i></li>
@@ -122,6 +144,7 @@ ul.pieces li{margin-top:6px;font-size:14px}
   </ul>
 
   <p class="note" style="margin-top:28px;border-top:1px solid var(--line);padding-top:12px">Document de travail pr&eacute;par&eacute; &agrave; partir des donn&eacute;es de l'op&eacute;ration (RACHAT DE SUCCESSION.COM, RCS Cusset 798 507 406) et des informations communiqu&eacute;es par l'emprunteur, qui reste seul responsable des &eacute;l&eacute;ments d&eacute;claratifs. Non contractuel. Les champs sur fond bleut&eacute; sont modifiables directement dans cette page ; aucune donn&eacute;e n'est transmise ni enregistr&eacute;e en dehors de votre navigateur.</p>
+</div>
 </div>
 
 <div class="actions">
@@ -154,6 +177,10 @@ ul.pieces li{margin-top:6px;font-size:14px}
     var m = t > 0 && n > 0 ? Math.round(capital * t / (1 - Math.pow(1 + t, -n))) : 0;
     document.getElementById("mensu").textContent = m ? fmt(m) : "\u2014";
     document.getElementById("effort").textContent = m ? fmt(m + 26 - 294) : "\u2014";
+    document.getElementById("kCout").textContent = fmt(cout);
+    document.getElementById("kApport").textContent = apport > 0 ? fmt(apport) + "\u00a0\u20ac" : "\u2014";
+    document.getElementById("kEmprunt").textContent = fmt(capital) + "\u00a0\u20ac";
+    document.getElementById("kMensu").textContent = m ? fmt(m) : "\u2014";
   }
   calcs.forEach(function (i) { i.addEventListener("input", function () { maj(); majSim(); }); });
   [tauxEl, dureeEl].forEach(function (i) { i.addEventListener("input", majSim); });
