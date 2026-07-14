@@ -92,14 +92,26 @@ ul.pieces li{margin-top:6px;font-size:14px}
   </table>
   <p class="note">March&eacute; locatif de Vichy : ville thermale class&eacute;e UNESCO (2021), client&egrave;le de curistes toute l'ann&eacute;e, gare en centre-ville (Paris ~3 h). Le bien est climatis&eacute; &#8212; &eacute;quipement rare sur le parc ancien local, d&eacute;terminant en saison estivale. M&ecirc;me en sc&eacute;nario plancher (location nue), le loyer couvre une part substantielle de la mensualit&eacute; vis&eacute;e.</p>
 
-  <h2>5. &Eacute;l&eacute;ments de s&eacute;curit&eacute; pour le pr&ecirc;teur</h2>
+  <h2>5. Simulation de charge et taux d'effort</h2>
+  <table>
+    <tr><th>Taux d'int&eacute;r&ecirc;t retenu (hors assurance)</th><td class="num"><input class="edit sim" id="taux" value="3,4"> %</td></tr>
+    <tr><th>Dur&eacute;e</th><td class="num"><input class="edit sim" id="duree" value="20"> ans</td></tr>
+    <tr class="total"><td>Mensualit&eacute; estim&eacute;e (capital + int&eacute;r&ecirc;ts)</td><td class="num"><span id="mensu">&mdash;</span> &euro;/mois</td></tr>
+    <tr><td>Loyer retenu pond&eacute;r&eacute; &agrave; 70 % (norme bancaire), sc&eacute;nario plancher 420 &euro;</td><td class="num">294 &euro;/mois</td></tr>
+    <tr><td>Charges de copropri&eacute;t&eacute; (moyenne)</td><td class="num">26 &euro;/mois</td></tr>
+    <tr class="total"><td>Effort d'&eacute;pargne mensuel net (sc&eacute;nario plancher)</td><td class="num"><span id="effort">&mdash;</span> &euro;/mois</td></tr>
+  </table>
+  <p class="note">Calculs conformes aux crit&egrave;res HCSF : loyers pond&eacute;r&eacute;s &agrave; 70 %, taux d'endettement global &agrave; maintenir sous 35 % des revenus nets (&agrave; recalculer par le conseiller avec l'ensemble des charges de l'emprunteur). En sc&eacute;nario courte dur&eacute;e au niveau de l'exploitation actuelle de l'emprunteur, l'op&eacute;ration s'autofinance.</p>
+  <p class="note">&Eacute;pargne r&eacute;siduelle apr&egrave;s apport : <input class="edit" value="" placeholder="a completer"> &euro; &#8212; <i>&agrave; renseigner : c'est la marge de s&eacute;curit&eacute; du dossier.</i></p>
+
+  <h2>6. &Eacute;l&eacute;ments de s&eacute;curit&eacute; pour le pr&ecirc;teur</h2>
   <div class="encart">
     <b>Risque travaux :</b> port&eacute; par le vendeur (chantier en ASL, entreprise en place, toiture et r&eacute;seaux d&eacute;j&agrave; r&eacute;alis&eacute;s) &mdash; l'acqu&eacute;reur ach&egrave;te un prix ferme.<br><br>
     <b>Risque locatif :</b> DPE C (aucune &eacute;ch&eacute;ance d'interdiction de location), charges minimales, demande locative document&eacute;e, emprunteur d&eacute;j&agrave; exploitant sur le m&ecirc;me march&eacute;.<br><br>
     <b>Risque de revente :</b> hyper-centre de Vichy, immeuble enti&egrave;rement r&eacute;habilit&eacute;, 7 lots sur 9 d&eacute;j&agrave; vendus dans l'op&eacute;ration.
   </div>
 
-  <h2>6. Pi&egrave;ces jointes au pr&eacute;sent dossier</h2>
+  <h2>7. Pi&egrave;ces jointes au pr&eacute;sent dossier</h2>
   <ul class="pieces">
     <li>Deux derniers avis d'imposition &mdash; <i>&agrave; joindre par l'emprunteur</i></li>
     <li>Trois derniers bulletins de salaire / justificatifs de revenus &mdash; <i>&agrave; joindre</i></li>
@@ -130,8 +142,23 @@ ul.pieces li{margin-top:6px;font-size:14px}
     var apport = parse(document.getElementById("apport").value);
     document.getElementById("emprunt").textContent = apport > 0 ? fmt(cout - apport) : "\u2014";
   }
-  calcs.forEach(function (i) { i.addEventListener("input", maj); });
+  var tauxEl = document.getElementById("taux");
+  var dureeEl = document.getElementById("duree");
+  function majSim() {
+    var vals = Array.from(calcs).map(function (i) { return parse(i.value); });
+    var cout = vals[0] + vals[1] + vals[2] + vals[3];
+    var apport = parse(document.getElementById("apport").value);
+    var capital = apport > 0 ? cout - apport : cout;
+    var t = parseFloat(String(tauxEl.value).replace(",", ".")) / 100 / 12;
+    var n = parse(dureeEl.value) * 12;
+    var m = t > 0 && n > 0 ? Math.round(capital * t / (1 - Math.pow(1 + t, -n))) : 0;
+    document.getElementById("mensu").textContent = m ? fmt(m) : "\u2014";
+    document.getElementById("effort").textContent = m ? fmt(m + 26 - 294) : "\u2014";
+  }
+  calcs.forEach(function (i) { i.addEventListener("input", function () { maj(); majSim(); }); });
+  [tauxEl, dureeEl].forEach(function (i) { i.addEventListener("input", majSim); });
   maj();
+  majSim();
 })();
 </script>
 </body>
